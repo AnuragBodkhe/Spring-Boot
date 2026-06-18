@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +24,13 @@ public class Customer {
 
     @Column(unique = true)
     private String email;
+
     private String city;
+
     private int age;
+
     private String BankUserName;
-    private int BankPassword;
+
+    private int password;
+
 }
