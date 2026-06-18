@@ -12,15 +12,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "SwiggyCustomers")
-
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long CustomerId;
-    private String Name;
+    private Long customerId;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(unique = true)
     private String email;
     private String city;
     private int age;
-
+    private String BankUserName;
+    private int BankPassword;
 }

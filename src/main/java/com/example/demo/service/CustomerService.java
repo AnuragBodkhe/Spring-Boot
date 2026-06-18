@@ -39,4 +39,8 @@ public class CustomerService {
         return repository.findByAgeGreaterThan(age);
     }
 
+    public List<Customer> saveCustomerList(List<Customer> customers){
+        return repository.saveAll(customers);
+    }
+
 }
