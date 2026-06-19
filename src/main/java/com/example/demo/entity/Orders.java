@@ -25,5 +25,4 @@ public class Orders {
     private Product product;
 
 
-
 }
