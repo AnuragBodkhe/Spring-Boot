@@ -1,14 +1,15 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
-public class Order {
+@Table(name="Orders")
+public class Orders {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
     private int quantityOrdered;
@@ -16,7 +17,13 @@ public class Order {
     private double totalPrice;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private
+    @JoinColumn(name="customer_id")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Product product;
+
+
 
 }
