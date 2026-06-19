@@ -29,7 +29,7 @@ public class Customer {
 
     private int age;
 
-    private String BankUserName;
+    private String bankUserName;
 
     private int password;
 

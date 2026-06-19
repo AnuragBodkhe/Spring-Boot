@@ -15,7 +15,7 @@ public class ProductController {
     ProductService service;
 
     @PostMapping
-    public Product addProuct(Product p){
+    public Product addProuct(@RequestBody Product p){
         return service.addProduct(p);
     }
 
@@ -45,7 +45,7 @@ public class ProductController {
     }
 
     @GetMapping("/category/{category}")
-    public List<Product> getProductsByCategory(String Category){
+    public List<Product> getProductsByCategory(@PathVariable   String Category){
         return service.getProductByCategory(Category);
     }
 
