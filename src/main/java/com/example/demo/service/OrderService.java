@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class OrderService {
+
     @Autowired
     private OrderRepository orderRepo;
 
@@ -22,33 +23,37 @@ public class OrderService {
     @Autowired
     private ProductRepository productRepo;
 
-
-    public Orders placeOrder(Long custId , Long ProdId , int qty){
-        Customer customer=custRepo.findById(custId).orElse(null);
-
-        if(customer!=null){
-            Product product=productRepo.findById(ProdId).orElse(null);
-
-            if(product!=null){
+    public Orders placeOrder(Long custId, Long prodId, int qty) {
+        Customer customer = custRepo.findById(custId).orElse(null);
+        if (customer != null) {
+            Product product = productRepo.findById(prodId).orElse(null);
+            if (product != null) {
                 Orders order = new Orders();
                 order.setCustomer(customer);
                 order.setProduct(product);
                 order.setQuantityOrdered(qty);
-
-                order.setTotalPrice(product.getPrice()*qty);
-
+                order.setTotalPrice(product.getPrice() * qty);
                 return orderRepo.save(order);
             }
         }
         return null;
     }
 
-
-    public List<Orders> getAllOrders(){
-        return  orderRepo.findAll();
+    public List<Orders> getAllOrders() {
+        return orderRepo.findAll();
     }
 
+    // ── 3 new methods ──────────────────────────────
 
+    public Long countOrdersByCustomer(Long customerId) {
+        return orderRepo.countOrder(customerId);
+    }
 
+    public Double totalAmountByCustomer(Long customerId) {
+        return orderRepo.totalAmount(customerId);
+    }
 
+    public Double totalRevenue() {
+        return orderRepo.totalRevenue();
+    }
 }

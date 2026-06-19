@@ -15,15 +15,31 @@ public class OrderController {
     OrderService service;
 
     @PostMapping("/{customerId}/{productId}/{qty}")
-    public Orders placeOrder(@PathVariable Long customerId ,@PathVariable Long productId ,@PathVariable int qty){
-
-        return service.placeOrder(customerId,productId,qty);
+    public Orders placeOrder(@PathVariable Long customerId,
+                             @PathVariable Long productId,
+                             @PathVariable int qty) {
+        return service.placeOrder(customerId, productId, qty);
     }
 
-
     @GetMapping
-    List<Orders> getAllOrders(){
+    public List<Orders> getAllOrders() {
         return service.getAllOrders();
     }
 
+    // ── 3 new endpoints ────────────────────────────
+
+    @GetMapping("/count/{customerId}")
+    public Long countOrders(@PathVariable Long customerId) {
+        return service.countOrdersByCustomer(customerId);
+    }
+
+    @GetMapping("/total/{customerId}")
+    public Double totalAmount(@PathVariable Long customerId) {
+        return service.totalAmountByCustomer(customerId);
+    }
+
+    @GetMapping("/revenue")
+    public Double totalRevenue() {
+        return service.totalRevenue();
+    }
 }
